@@ -2,8 +2,8 @@
 An Unity Package template for Eric Wastl´s Advent of Code 
 
 ### Todo
-- [ ] Setup all tests for all days
-- [ ] Set Session ID
+- [x] Setup all tests for all days
+- [x] Set Session ID
 - [ ] Fetch Inputs
-- [ ] Cache Fetched Inputs
+- [x] Cache Fetched Inputs
 - [ ] Write Readme
