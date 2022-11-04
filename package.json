@@ -1,11 +1,11 @@
 {
     "name": "com.jturesson.adventofcode.starter",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "author": {
         "email": "jturesson90@gmail.com",
         "name": "Jesper Turesson"
     },
     "displayName": "Advent of Code",
-    "unity": "2019.1",
+    "unity": "2022.1",
     "description": "A github template for Advent of Code."
 }
