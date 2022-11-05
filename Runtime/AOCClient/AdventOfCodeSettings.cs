@@ -1,6 +1,8 @@
 using System;
 using System.Linq;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 namespace AdventOfCode.AOCClient
@@ -10,40 +12,39 @@ namespace AdventOfCode.AOCClient
     {
         [SerializeField] private string m_Session;
         [SerializeField] private int m_Year;
-
-        private static AdventOfCodeSettings _instance;
-
-        public static AdventOfCodeSettings Instance
-        {
-            get
-            {
-                if (_instance != null) return _instance;
-
-                var list = Resources.FindObjectsOfTypeAll<AdventOfCodeSettings>();
-                Debug.Log("Looking For AdventOfCodeSettings in Resources, found " + list.Length);
-                _instance = list.FirstOrDefault();
-                if (_instance != null) return _instance;
-                Debug.Log("Did not find AdventOfCodeSettings in Resources, Creating new");
-                _instance = CreateInstance<AdventOfCodeSettings>();
-                _instance.hideFlags = HideFlags.DontUnloadUnusedAsset;
-                AssetDatabase.Refresh();
-
-                return _instance;
-            }
-        }
-
         public string Session => m_Session;
         public int Year => m_Year;
+        public static AdventOfCodeSettings Instance { get; private set; }
 
         private void OnEnable()
         {
-            hideFlags = HideFlags.DontUnloadUnusedAsset;
-            Debug.Log("OnEnable AdventOfCodeSettings");
+            Instance = this;
+        }
+#if UNITY_EDITOR
+        [MenuItem("Window/JTuresson/Create Advent of Code Settings", true)]
+        public static bool CanCreateAsset()
+        {
+            return Instance == null;
         }
 
-        private void OnDestroy()
+        [MenuItem("Window/JTuresson/Create Advent of Code Settings")]
+        public static void CreateAsset()
         {
-            Debug.Log("DESTROYING MY AdventOfCodeSettings");
+            var path = EditorUtility.SaveFilePanelInProject("Advent of Code Settings",
+                "AdventOfCodeSettings", "asset",
+                "Please create the Settings for AdventOfCode");
+            if (string.IsNullOrEmpty(path))
+                return;
+
+            var configObject = CreateInstance<AdventOfCodeSettings>();
+            AssetDatabase.CreateAsset(configObject, path);
+
+            // Add the config asset to the build
+            var preloadedAssets = UnityEditor.PlayerSettings.GetPreloadedAssets().ToList();
+            preloadedAssets.Add(configObject);
+            PlayerSettings.SetPreloadedAssets(preloadedAssets.ToArray());
+            Instance = configObject;
         }
+#endif
     }
 }
