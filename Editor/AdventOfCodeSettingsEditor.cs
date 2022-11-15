@@ -15,7 +15,9 @@ namespace Editor
         {
             var root = new VisualElement();
             m_UXML.CloneTree(root);
-            InspectorElement.FillDefaultInspector(root, serializedObject, this);
+            var uxmlButton = root.Q<Button>("AdventClearCache");
+            uxmlButton.RegisterCallback<MouseUpEvent>((evt) =>
+                ((AdventOfCodeSettings) target).ClearCache());
             return root;
         }
     }

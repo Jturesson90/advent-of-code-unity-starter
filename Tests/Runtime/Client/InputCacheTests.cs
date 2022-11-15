@@ -1,5 +1,6 @@
 using AdventOfCode;
 using NUnit.Framework;
+using UnityEngine;
 
 namespace Client
 {
@@ -9,11 +10,11 @@ namespace Client
         public void CanAddAndRemove()
         {
             // Arrange
-            var cache = InputsCache.Instance;
+            var cache = ScriptableObject.CreateInstance<AdventOfCodeCache>();
             cache.AddInput(1514, 2, "hej");
             var hej = cache.GetInput(1514, 2);
             Assert.AreEqual(hej, "hej");
-            cache.DeleteInput(1514, 2);
+            cache.DeleteDay(1514, 2);
             var f = cache.HasInput(1514, 2);
             Assert.IsFalse(f);
         }

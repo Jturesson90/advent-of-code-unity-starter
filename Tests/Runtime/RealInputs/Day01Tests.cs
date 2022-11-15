@@ -18,13 +18,13 @@ namespace RealInputs
         public void Setup()
         {
             var settings = AdventOfCodeSettings.Instance;
-            _client = new AdventOfCodeClient(null, settings);
+            _client = new AdventOfCodeClient(settings.GetCache(), settings);
         }
 
         [UnityTest]
         public async Task PuzzleA()
         {
-            var input = await _client.LoadDay(Day);
+            var input = await _client.LoadDayInput(Day);
         }
     }
 }
