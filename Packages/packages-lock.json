@@ -1,10 +1,11 @@
 {
   "dependencies": {
     "com.jturesson.adventofcode": {
-      "version": "file:C:/Develop/JTuresson/advent-of-code-unity",
+      "version": "https://github.com/Jturesson90/advent-of-code-unity.git",
       "depth": 0,
-      "source": "local",
-      "dependencies": {}
+      "source": "git",
+      "dependencies": {},
+      "hash": "4600e9b41b3ca84dee339cdb2b29b350d70b09f6"
     },
     "com.unity.collab-proxy": {
       "version": "1.17.2",

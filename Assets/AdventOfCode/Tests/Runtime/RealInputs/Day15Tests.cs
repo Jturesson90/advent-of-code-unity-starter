@@ -6,10 +6,10 @@ using UnityEngine.TestTools;
 
 namespace RealInputs
 {
-    public class Day01Tests
+    public class Day15Tests
     {
         private int _day;
-        private Day01 _daySolution;
+        private Day15 _daySolution;
         private AdventOfCodeClient _client;
 
         [SetUp]
@@ -18,8 +18,8 @@ namespace RealInputs
             var settings = AdventOfCodeSettings.Instance;
             var cache = settings.GetCache();
             _client = new AdventOfCodeClient(settings, cache);
-            _daySolution = new Day01();
-            _day = 1;
+            _daySolution = new Day15();
+            _day = 15;
         }
 
         [UnityTest]
